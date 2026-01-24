@@ -1,0 +1,164 @@
+---
+title: Tutorial of the Fusion Programming Language 
+author: Detlef Groth, University of Potsdam
+date: 2026-01-19 11:10
+---
+
+`include tutorial.toc`
+
+## Introduction
+
+[Fusion](https://fusion-lang.org/) is a programming language which works as a transpiler, a tool which
+translates code in the Fusion programming language into code of the
+programming languages C, C++, C#, D, Java, Javascript, Python, Swift, Typescript and OpenCL.
+
+<center>
+![Diagram](https://kroki.io/graphviz/svg/eNptUMFOAyEQvfcrJvWiKbrqHS_bejBGjfbW9MAu0zIphRXY1o3pv8sC0R4kZCbMvPfmDZK2TnQK5vA9gXjSa6XFYPvAw9F2xJy1gdeLl-XifZ0wxkpc-TBo5BvSGiUbU2u1ddwLvbeGeSU65I39YkeSQfG7m9vMdcLsPHb8HqoKPIZYkNR7BmTibRX6DPubCSMSfRCNJq8gKIRLMgfy1Gi8ghZNQJc8JWZVodwiFH8JmCdntbhag5o_9p5-bbbkWo3nS-yGRve4LoKF-o9m2QE_e5IULZoWQWid3HjYOLsv3DMHcP1Q_nosMZjWs9l0TBcxzhk8iYPI0beOusDehqCiV_g40iYwWA4dlg68dmjq56iT9E5Z9Xx_bzXJ9SQ3JqcfG_ia7w==)
+
+[Edit this diagram](https://niolesk.top/#https://kroki.io/graphviz/svg/eNptUMFOAyEQvfcrJvWiKbrqHS_bejBGjfbW9MAu0zIphRXY1o3pv8sC0R4kZCbMvPfmDZK2TnQK5vA9gXjSa6XFYPvAw9F2xJy1gdeLl-XifZ0wxkpc-TBo5BvSGiUbU2u1ddwLvbeGeSU65I39YkeSQfG7m9vMdcLsPHb8HqoKPIZYkNR7BmTibRX6DPubCSMSfRCNJq8gKIRLMgfy1Gi8ghZNQJc8JWZVodwiFH8JmCdntbhag5o_9p5-bbbkWo3nS-yGRve4LoKF-o9m2QE_e5IULZoWQWid3HjYOLsv3DMHcP1Q_nosMZjWs9l0TBcxzhk8iYPI0beOusDehqCiV_g40iYwWA4dlg68dmjq56iT9E5Z9Xx_bzXJ9SQ3JqcfG_ia7w==)
+</center>
+
+For background on the difference between compilers and transpilers have a
+look at this [Geeks For Geeks Article](https://www.geeksforgeeks.org/compiler-design/difference-between-transpiler-and-compiler/).
+
+## Installation
+
+The transpiler for Fusion code is the [fut command line application](https://github.com/fusionlanguage/fut).
+There are binaries available for Intel/AMD systems for Linux, MacOS and Windows systems. You should download the latest version for your platform from the [release page](https://github.com/fusionlanguage/fut/releases/).
+Here an example for a Debian like system using the
+[dpkg](https://www.linuxbash.sh/post/using-dpkg-to-manually-install-deb-packages)
+command line application:
+
+```
+VERSION=fut-3.2.13
+wget https://github.com/fusionlanguage/fut/releases/download/${V}/${V}-1_amd64.deb
+sudo dpkg -i ${V}-1_amd64.deb
+```
+
+For MacOS you would use the Brew package manager:
+
+```
+brew install fusionlanguage/fut/fut
+```
+
+## Hello World Example
+
+As usually we start with the standard "Hello World!" example. 
+
+Fusion is not meant to write real programs, but libraries which can be then
+used in the aforementioned programming languages. Still Fusion supports the
+creation of simple command line applications, so here is our example and the expected output:
+
+```{.shell label=Main cmd="fuscript %i > %b.txt" chunk.ext=fu ext=txt}
+public static class Main {
+    public static void Main () {
+        Console.WriteLine("Hello World!");
+    }   
+}
+```
+
+The fusion source code can be translated into the target programming language.
+Here an example for translating it into Python code and then executing it:
+
+```
+fut Main.fu -o out/main.py
+python3 out/main.py
+```
+
+The Python output looks like this:
+
+`include Main.py {{<pre class="py">} {</pre>}}` 
+
+
+To compile to other targets you just have to change the file extension. Here an example to create D code:
+
+```
+fut Main.fu -o out/main.d
+dmd out/main.d -of=out/main
+./out/main 
+Hello World!
+```
+
+The D language output looks like this:
+
+`include out/main.d {{<pre class="py">} {</pre>}}` 
+
+
+## Fusion Script Interpreter
+
+In this tutorial we will use Python to directly execute the generated code
+and embed the output into the document. For this we will use a little Bash
+Script which generates Python code and then at the same time. Execute the generated script.
+
+The script looks like this:
+
+```{.shell eval=FALSE,include=FALSE}
+#INCLUDE "fuscript.sh"
+```
+
+## Data Types
+
+The main basic data types in Fusion are boolean, int, float and double. For
+int types as well exists byte, short, ushort and unint. Below you see how you
+can create strings with embedded variable names. That does not work for
+boolean values, so we create a help method BoolToInt which converts the
+boolean value to an integer.
+ 
+```{.shell label=Main2 cmd="fuscript %i > %b.txt" chunk.ext=fu ext=txt}
+static class Main2 {
+    public static int BoolToInt (bool b) {
+        if (b) { return(1); }
+        return(0);
+    }
+    public static void Main (string[] args) {
+        int x = 3 ;
+        bool b = true;  // bools can't be printed
+        bool c = false;
+        byte y = 12; 
+        float f = 1.234;        
+        Console.WriteLine($" x={x} b={BoolToInt(b)} c={BoolToInt(c)} y={y} f={f}");
+    }   
+}
+```
+
+
+As we did not prefix this class declaration with the public keyword that class will have an underscore in Python.
+
+Here the output for the Python script :
+
+`include Main2.py {{<pre class="py">} {</pre>}}` 
+
+The output of the D language is not affected by the public keyword for the class.
+
+## Type Conversions
+
+Fusion does not support type conversions for instance from a string to an integer per default. But it can be implemented like this:
+
+
+```{.shell label=Main3 cmd="fuscript %i > %b.txt" chunk.ext=fu ext=txt}
+public static class Main3 {
+    public static int BoolToInt (bool b) {
+        if (b) { return(1); }
+        return(0);
+    }
+    public static bool StringToBool (string b) {
+        if (b.ToLower() == "true" || b == "1") {
+            return(true);
+        } else {
+            return(false);
+        }
+    }
+    public static void Main (string[] args) {
+        string s1 = "true";
+        bool b1 = StringToBool(s1);
+        string s2 = "1";
+        bool b2 = StringToBool(s2);
+        string s3 = "false";
+        bool b3 = StringToBool(s3);
+        string s4 = "";
+        bool b4 = StringToBool(s4);
+        Console.WriteLine($"s1={BoolToInt(b1)} s2={BoolToInt(b2)}");
+        Console.WriteLine($"s3={BoolToInt(b3)} s4={BoolToInt(b4)}");
+    }   
+}
+```

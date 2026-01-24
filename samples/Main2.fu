@@ -1,0 +1,14 @@
+public static class Main2 {
+    public static int BoolToInt (bool b) {
+        if (b) { return(1); }
+        return(0);
+    }
+    public static void Main (string[] args) {
+        int x = 3 ;
+        bool b = true;  // bools can't be printed
+        bool c = false;
+        byte y = 12; 
+        float f = 1.234;        
+        Console.WriteLine($" x={x} b={BoolToInt(b)} c={BoolToInt(c)} y={y} f={f}");
+    }   
+}
