@@ -1,13 +1,3 @@
-/* -*- C -*- *****************************************************************
- *
- * Copyright (C) 2026 MicroEmacs User.
- *
- * All rights reserved.
- *
- * Synopsis:    
- * Authors:     MicroEmacs User
- *
- *****************************************************************************/
 #include <stdio.h>
 #include "hello.h"
 
