@@ -41,7 +41,7 @@ fut Hello.fu -o hello.py
 
 The content of that file would then look like this:
 
-```
+```python
 # Generated automatically with "fut". Do not edit.
 
 class Hello:
@@ -59,7 +59,7 @@ writing libraries which can be then used within the mentioned languages. To
 test the example code above you can create a little file which contains code
 to use the generated Python file with following content.
 
-```
+```python
 #!/usr/bin/env python3
 import hello
 h=hello.Hello()
@@ -87,7 +87,7 @@ This will create two files "hello.c" and "hello.h".
 To run the generated method in a C program you again might create a C file
 with a main function like this:
 
-```
+```c
 // file: run-hello.c
 #include <stdio.h>
 #include "hello.h"
@@ -164,7 +164,7 @@ Hello World!
 
 The generated output file main.py looks like this:
 
-```Python
+```python
 # Generated automatically with "fut". Do not edit.
 
 class Main:
