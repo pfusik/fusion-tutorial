@@ -19,12 +19,7 @@ ARGS=
 tasks:  ## list all tasks
 	@grep -Eo '^[a-z0-9]+:.+' $(CURRENT_MAKEFILE) | sed -E 's/:\s+##/\t- /g'
 
-stringutils:
-	fut -D CPP StringUtils.fu -o StringUtils.cpp
-	g++ StringUtils.cpp -o out/StringUtils-cpp
-	./out/StringUtils-cpp
-	fut -D D StringUtils.fu -o StringUtils.d
-	dmd StringUtils.d -of=out/StringUtils-d
-	./out/StringUtils-d
-	fut -D PY StringUtils.fu -o StringUtils.py
-	python3 StringUtils.py
+tutorial:
+	[ -f Main.fu ] && fut Main.fu -o out/main.d && dmd out/main.d -of:out/main-d
+	tmdoc tutorial.Rmd - --toc true | mndoc - tutorial.html --css tmdoc.css
+
