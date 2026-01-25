@@ -204,8 +204,8 @@ Here are two other programming languages which transpile to several different pr
 The main advantage of Fusion seems the easy to learn language, clear and
 small implementation, install size less than 1Mb and the targeting of C in an object oriented style usable with Swig.
 
-The main disadvantage seems to be the smaller core library, but small install
-size this is just is the prize to pay.
+The main disadvantage seems to be the smaller core library, fewer string or list functions for instance, but due to the small install
+size this is just the prize to pay. We can implement however missing functionalities by using  _native_ blocks to add more features.
 
 ## Summary
 
