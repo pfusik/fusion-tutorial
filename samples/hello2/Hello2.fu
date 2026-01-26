@@ -4,9 +4,9 @@ public static class Hello2 {
     }
     public static void Main (string[] args) {
         if (args.Length > 0) {
-            Console.WriteLine(GetHello(args[0]));
+            Console.WriteLine(Hello2.GetHello(args[0]));
         } else {
-            Console.WriteLine(GetHello("World"));
+            Console.WriteLine(Hello2.GetHello("World"));
         }
     }   
 }

@@ -38,7 +38,7 @@ c-run:  ## create and run code translated to C
 
 cpp-run: ## create and run code translated to C++
 	fut -o cpp/$(LBASENAME).cpp $(FUFILE)
-	g++ cpp/$(LBASENAME).cpp -o bin/$(LBASENAME)-cpp
+	g++ -std=c++20 cpp/$(LBASENAME).cpp -o bin/$(LBASENAME)-cpp
 	./bin/$(LBASENAME)-cpp
 	./bin/$(LBASENAME)-cpp "Max Musterman"
 
