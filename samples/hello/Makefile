@@ -88,6 +88,7 @@ r-run:
 	cd R && R CMD SHLIB hello_wrap.c hello.c -o hello.so
 	cd R && Rscript run-hello.R
 v-run:
+	## example: https://github.com/vlang/v/blob/master/examples/c_interop_wkhtmltopdf.v
 	fut -o v/$(LBASENAME).c $(FUFILE)
 	cd v && gcc -shared hello.c -o libhello.so
 	cd v && v run hello.v
