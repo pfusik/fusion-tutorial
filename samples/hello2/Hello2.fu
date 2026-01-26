@@ -1,0 +1,12 @@
+public static class Hello2 {
+    public static string() GetHello (string user) {
+        return($"Hello {user}!");
+    }
+    public static void Main (string[] args) {
+        if (args.Length > 0) {
+            Console.WriteLine(GetHello(args[0]));
+        } else {
+            Console.WriteLine(GetHello("World"));
+        }
+    }   
+}
