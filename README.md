@@ -201,20 +201,28 @@ Here are two other programming languages which transpile to several different pr
 - [Temper](https://temperlang.dev/) - C++ and Java like language - transpiles to C-sharp, Java, Javascript/Typescript, Python, Lua
 - [Wax](https://github.com/LingDong-/wax) - Lisp like language - transpiles to C, Java, Typecript, Python, C-sharp, Swift, Lua 
 
-The main advantage of Fusion seems the easy to learn language, clear and
-small implementation, install size less than 1Mb and the targeting of C in an object oriented style usable with Swig.
+The main __advantages__ of Fusion seem to be its easy-to-learn language,
+which is closely similar to C#, and its clear and small implementation. It
+has a reasonable set of target languages, covering the top six programming
+languages from the TIOBE index. The installation size is less than 1 MB and
+easy to accomplish.
 
-The main disadvantage seems to be the smaller core library, fewer string or list functions for instance, but due to the small install
-size this is just the prize to pay. We can implement however missing functionalities by using  _native_ blocks to add more features.
+The main __disadvantage__ seems to be the smaller core library, which results
+in fewer string or list functions, for example. However, this is the price we
+have to pay for a small, clean core. However, we can implement missing
+functionalities by using native blocks to add more features in a language-
+specific manner or by writing utility classes that provide the necessary
+functionality for a specific project.
 
 ## Summary
 
 The Fusion programming language allows you to implement libraries and
-algorithms usable for a lot of widely used programming languages in a C-sharp
-like syntax. The syntax is therefor easy to comprehend for many programmers.
-Using the Swig interface generator even more languages like scripting
-languages such as Tcl, Perl, Lua or Octave or languages like Go can be
-targeted.
+algorithms usable for many widely used programming languages in a C#-like
+syntax. This syntax is therefore easy for many programmers to comprehend.
+
+With the SWIG interface generator, you can target even more languages,
+including scripting languages such as Tcl, Perl, Lua, and Octave, as well as
+compiled languages such as GO.
 
 ## Author
 
