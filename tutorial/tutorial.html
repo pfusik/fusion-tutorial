@@ -605,11 +605,14 @@ s3=xyz i3=-1
 s4=1234.5678 i4=1234
 s5=a1234.5678 i5=-100</code></pre>
 
-<p><a name="nativelanguagecode"> </a></p><h2>Native Language code</h2>
+<p><a name="nativelanguagecode"> </a></p><h2>Native Language Code</h2>
 
-<p>That approach to implement a feature which is probaby available in all target
-languages in a much more straightforward way. To use language specific
-functionalities you can embed code block within the native keyword here an example for a StringUtils class which uses this approach. To create code in the target language ou have than to call the <em>fut</em> transpiler with a -D option like this:</p>
+<p>That complicated approach to implement a feature which is probaby available in all target
+languages in a much more straightforward way, seems a little bit awkward. To use target language specific
+functionalities you can instead embed code block within the native keyword.</p>
+
+<p>Here an example for a <em>StringUtils</em> class which uses this approach. To create
+code in the target language ou have than to call the <em>fut</em> transpiler with a <code>-D</code> option like this:</p>
 
 <pre class='code'><code>fut -D PY StringUtils.fi -o stringutils.py
 python3 stringutils.py</code></pre>

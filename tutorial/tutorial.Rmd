@@ -1,7 +1,7 @@
 ---
 title: Tutorial of the Fusion Programming Language (WIP)
 author: Detlef Groth, University of Potsdam
-date: 2026-01-26 20:23
+date: 2026-01-26 20:31
 ---
 
 `include tutorial.toc`
@@ -286,11 +286,14 @@ And here the program output:
 #INCLUDE "Main4.fu"
 ```
 
-## Native Language code
+## Native Language Code
 
-That approach to implement a feature which is probaby available in all target
-languages in a much more straightforward way. To use language specific
-functionalities you can embed code block within the native keyword here an example for a StringUtils class which uses this approach. To create code in the target language ou have than to call the _fut_ transpiler with a -D option like this:
+That complicated approach to implement a feature which is probaby available in all target
+languages in a much more straightforward way, seems a little bit awkward. To use target language specific
+functionalities you can instead embed code block within the native keyword.
+
+Here an example for a _StringUtils_ class which uses this approach. To create
+code in the target language ou have than to call the _fut_ transpiler with a `-D` option like this:
 
 ```
 fut -D PY StringUtils.fi -o stringutils.py
