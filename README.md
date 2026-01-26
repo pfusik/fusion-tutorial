@@ -6,6 +6,15 @@ like C, C++, Java and others. The generated C or C++ code can be then used in
 scripting languages like Tcl, R or others using the
 [Simplified Wrapper and Interface Generator (Swig)](https://swig.org). 
 
+## Links
+
+- [Getting Started](https://github.com/fusionlanguage/fut/blob/master/doc/getting-started.md)
+- [Fusion Reference](https://github.com/fusionlanguage/fut/blob/master/doc/reference.md)
+- [Fusion Playground](https://www.fusion-lang.org/playground)
+. [Fusion Tutorial (WIP)](http://htmlpreview.github.io/?https://github.com/mittelmark/fusion-tutorial/blob/master/tutorial/tutorial.html)
+
+
+
 Below you see a list of programming languages which you can target directly
 using using the [fut - command line tool for Fusion](https://github.com/fusionlanguage/fut/)
 or, indirectly, using the `fut` generated C code and with [Swig](https://www.swig.org). See below the Tcl section for that approach.
@@ -228,18 +237,10 @@ With the SWIG interface generator, you can target even more languages,
 including scripting languages such as Tcl, Perl, Lua, and Octave, as well as
 compiled languages such as GO.
 
-## Links
-
-- [Getting Started](https://github.com/fusionlanguage/fut/blob/master/doc/getting-started.md)
-- [Fusion Reference](https://github.com/fusionlanguage/fut/blob/master/doc/reference.md)
-- [Fusion Playground](https://www.fusion-lang.org/playground)
-. [Fusion Tutorial (WIP)](http://htmlpreview.github.io/?https://github.com/mittelmark/fusion-tutorial/blob/master/tutorial/tutorial.html)
-
 ## TODO
 
 - adding swig/R examples
 - adding swig/Go examples
-- adding 
 
 ## Author
 
