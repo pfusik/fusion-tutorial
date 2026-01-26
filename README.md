@@ -11,7 +11,7 @@ scripting languages like Tcl, R or others using the
 - [Getting Started](https://github.com/fusionlanguage/fut/blob/master/doc/getting-started.md)
 - [Fusion Reference](https://github.com/fusionlanguage/fut/blob/master/doc/reference.md)
 - [Fusion Playground](https://www.fusion-lang.org/playground)
-. [Fusion Tutorial (WIP)](http://htmlpreview.github.io/?https://github.com/mittelmark/fusion-tutorial/blob/master/tutorial/tutorial.html)
+- [Fusion Tutorial (WIP)](http://htmlpreview.github.io/?https://github.com/mittelmark/fusion-tutorial/blob/master/tutorial/tutorial.html)
 
 
 
