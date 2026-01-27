@@ -1,0 +1,6 @@
+public static class Hello {
+    public static string GetMessage () {
+        return "Hello Message!";
+    }   
+}
+

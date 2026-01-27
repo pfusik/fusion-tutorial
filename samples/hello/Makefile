@@ -91,7 +91,26 @@ v-run:
 	## example: https://github.com/vlang/v/blob/master/examples/c_interop_wkhtmltopdf.v
 	fut -o v/$(LBASENAME).c $(FUFILE)
 	cd v && gcc -shared hello.c -o libhello.so
-	cd v && v run hello.v
-	cd v && v .
+	cd v && LD_LIBRARY_PATH=. v run hello.v
+	cd v && LD_LIBRARY_PATH=. v .
 	./v/v
 	
+lua-run:
+	fut -o lua/$(LBASENAME).ts $(FUFILE)
+	cd lua && npx tstl $(LBASENAME).ts
+	cd lua && lua run-$(LBASENAME).lua
+lua-swig: ## library creation using swig
+	fut -o lua-run-swig/$(LBASENAME).c $(FUFILE)
+	cd lua-run-swig && swig -lua -module $(LBASENAME) -o $(LBASENAME)_wrap.c $(LBASENAME).i
+	cd lua-run-swig && gcc -fPIC -I/usr/include/lua5.1 -c  $(LBASENAME)_wrap.c -o $(LBASENAME)_wrap.o
+	cd lua-run-swig && gcc -fPIC -I/usr/include/lua5.1 -c  $(LBASENAME).c -o $(LBASENAME).o
+	cd lua-run-swig && gcc -shared -I/usr/include/lua5.1 -L/usr/lib/x86_64-linux-gnu/  $(LBASENAME)_wrap.o $(LBASENAME).o -o $(LBASENAME).so
+	cd lua-run-swig && nm $(LBASENAME).so | grep GetMessage
+	cd lua-run-swig && lua run-$(LBASENAME).lua
+octave-run:
+	## sudo apt install octave-dev
+	fut -o octave/$(LBASENAME).c $(FUFILE)
+	cd octave && swig -octave -module $(LBASENAME) -o $(LBASENAME)_wrap.cpp $(LBASENAME).i
+	cd octave && mkoctfile $(LBASENAME)_wrap.cpp $(LBASENAME).c -o $(LBASENAME)
+	cd octave && octave run-hello.m
+
