@@ -1,7 +1,7 @@
 ---
 title: Tutorial of the Fusion Programming Language (WIP)
 author: Detlef Groth, University of Potsdam
-date: 2026-01-28 00:05
+date: 2026-01-28 00:12
 ---
 
 `include tutorial.toc`
@@ -182,6 +182,10 @@ gcc -shared hello.c -o libhello.so
 LD_LIBRARY_PATH=. dart run hello.dart
 cd ..
 ```
+
+So, we can see that we can support as well other language as the _fut_
+transpiler should output clean C code which can be then used in even more programming
+languages.
 
 
 ## Data Types
