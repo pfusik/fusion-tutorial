@@ -208,7 +208,7 @@ There is a more extensive tutorial as a WIP project which you can view here
 
 ## See Also
 
-Here are two other programming languages which transpile to several different programming languages
+Here are three other programming languages which transpile to several other programming languages:
 
 - [Haxe](https://haxe.org/) - C++ and Java like language transpiles to C++, C-sharp, JVM, PHP, Lua, Python, Neko
 - [Temper](https://temperlang.dev/) - C++ and Java like language - transpiles to C-sharp, Java, Javascript/Typescript, Python, Lua
@@ -239,7 +239,7 @@ compiled languages such as GO.
 
 ## TODO
 
-- adding swig/R examples
+- adding swig/R examples (done - [src](https://github.com/mittelmark/fusion-tutorial/tree/main/samples/hello/R), [Makefile r-run section](https://github.com/mittelmark/fusion-tutorial/blob/main/samples/hello/Makefile))
 - adding swig/Go examples
 
 ## Author
