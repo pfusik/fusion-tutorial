@@ -221,12 +221,33 @@ cd assets &amp;&amp; lua run-hello-tstl.lua</code></pre>
 
 <pre class='code'><code class='out'>Hello Message!</code></pre>
 
+<p>BTW: The file created by <em>tstl</em> from the Typescript code looks like this:</p>
+
+<pre>local ____lualib = require("lualib_bundle")
+local __TS__Class = ____lualib.__TS__Class
+local ____exports = {}
+____exports.Hello = __TS__Class()
+local Hello = ____exports.Hello
+Hello.name = "Hello"
+function Hello.prototype.____constructor(self)
+end
+function Hello.getMessage(self)
+    return "Hello Message!"
+end
+return ____exports</pre>
+
+<p>The file <em>lualib_bundle.lua</em> imported here is a 82kb file which supports the
+mapping from Typescript to Lua code.</p>
+
 <p><a name="vlang"> </a></p><h3>V-lang</h3>
 
-<p>As C code can be easily used by other programming languages we might as well
-use the C output to use that in other programming languages. Here an example
+<p>More important for using our Fusion code library is the C code output. As C
+code can be easily used by other programming languages we might as well use
+the C output to use that in other programming languages. Here an example
 using the <a href="https://vlang.io/">V Programming Language</a>. To use the libary we
-include the C header file and declare all functions we like to use from the library file. So for the same file <em>Hello.fu</em> show above we create the following V file.</p>
+include the C header file and declare all functions we like to use from the
+library file. So for the same file <em>Hello.fu</em> show above we create the
+following V file.</p>
 
 <pre>#flag -I. -L. -lhello
 #include "hello.h" 

@@ -1,7 +1,7 @@
 ---
 title: Tutorial of the Fusion Programming Language (WIP)
 author: Detlef Groth, University of Potsdam
-date: 2026-01-29 15:22
+date: 2026-01-29 16:12
 ---
 
 `include tutorial.toc`
@@ -134,12 +134,22 @@ npx tstl assets/hello.ts
 cd assets && lua run-hello-tstl.lua
 ```
 
+BTW: The file created by _tstl_ from the Typescript code looks like this:
+
+`include assets/hello.lua {<pre> </pre>}`
+
+The file *lualib_bundle.lua* imported here is a 82kb file which supports the
+mapping from Typescript to Lua code.
+
 ### V-lang
 
-As C code can be easily used by other programming languages we might as well
-use the C output to use that in other programming languages. Here an example
+More important for using our Fusion code library is the C code output. As C
+code can be easily used by other programming languages we might as well use
+the C output to use that in other programming languages. Here an example
 using the [V Programming Language](https://vlang.io/). To use the libary we
-include the C header file and declare all functions we like to use from the library file. So for the same file _Hello.fu_ show above we create the following V file.
+include the C header file and declare all functions we like to use from the
+library file. So for the same file _Hello.fu_ show above we create the
+following V file.
 
 `include assets/hello.v {<pre> </pre>}`
 
