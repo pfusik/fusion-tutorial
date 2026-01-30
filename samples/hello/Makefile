@@ -115,3 +115,6 @@ octave-run:
 	cd octave && mkoctfile $(LBASENAME)_wrap.cpp $(LBASENAME).c -o $(LBASENAME)
 	cd octave && octave run-hello.m
 
+go-cgo-run:
+	fut -o go/$(LBASENAME).c $(FUFILE)
+	cd go && go run run-$(LBASENAME).go $(LBASENAME)
