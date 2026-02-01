@@ -76,3 +76,12 @@ tcl-run:  ## create and run code translated to C and then wrapped using Swift as
 	cd tcl && gcc -fPIC -c $(LBASENAME)_wrap.c -I/usr/include/tcl8.6 ## compile the SWIG generated code
 	cd tcl && gcc -shared $(LBASENAME).o $(LBASENAME)_wrap.o -o $(LBASENAME).so    ## combine both to a Tcl library
 	cd tcl && tclsh fib.tcl    ## execute the code
+
+lua-swig-run:
+	fut -o lua-swig/$(LBASENAME).c $(FUFILE)
+	cd lua-swig && swig -lua -module $(LBASENAME) -o $(LBASENAME)_wrap.c $(LBASENAME).i
+	cd lua-swig && gcc -fPIC -I/usr/include/lua5.1 -c  $(LBASENAME)_wrap.c -o $(LBASENAME)_wrap.o
+	cd lua-swig && gcc -fPIC -I/usr/include/lua5.1 -c  $(LBASENAME).c -o $(LBASENAME).o
+	cd lua-swig && gcc -shared -I/usr/include/lua5.1 -L/usr/lib/x86_64-linux-gnu/  $(LBASENAME)_wrap.o $(LBASENAME).o -o $(LBASENAME).so
+	cd lua-swig && nm $(LBASENAME).so | grep Fib
+	cd lua-swig && lua run-$(LBASENAME).lua
