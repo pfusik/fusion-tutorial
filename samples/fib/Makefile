@@ -85,3 +85,8 @@ lua-swig-run:
 	cd lua-swig && gcc -shared -I/usr/include/lua5.1 -L/usr/lib/x86_64-linux-gnu/  $(LBASENAME)_wrap.o $(LBASENAME).o -o $(LBASENAME).so
 	cd lua-swig && nm $(LBASENAME).so | grep Fib
 	cd lua-swig && lua run-$(LBASENAME).lua
+
+lua-tstl-run:
+	fut -o lua-tstl/$(LBASENAME).ts $(FUFILE)
+	cd lua-tstl && npx tstl $(LBASENAME).ts
+	cd lua-tstl && lua run-$(LBASENAME).lua
