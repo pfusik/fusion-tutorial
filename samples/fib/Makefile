@@ -69,13 +69,13 @@ ts-run: ## create and run code translated to Typescript and the Javascript
 	tsc ts/$(LBASENAME).ts
 	node ts/$(LBASENAME).js
 
-tcl-run:  ## create and run code translated to C and then wrapped using Swift as a Tcl library
-	fut -o tcl/$(LBASENAME).c $(FUFILE)
-	cd tcl && swig -tcl8 -module $(LBASENAME) $(LBASENAME).i                ## create the interface
-	cd tcl && gcc -fPIC -c $(LBASENAME).c                            ## compile the FU generated code
-	cd tcl && gcc -fPIC -c $(LBASENAME)_wrap.c -I/usr/include/tcl8.6 ## compile the SWIG generated code
-	cd tcl && gcc -shared $(LBASENAME).o $(LBASENAME)_wrap.o -o $(LBASENAME).so    ## combine both to a Tcl library
-	cd tcl && tclsh fib.tcl    ## execute the code
+tcl-swig-run:  ## create and run code translated to C and then wrapped using Swift as a Tcl library
+	fut -o tcl-swig/$(LBASENAME).c $(FUFILE)
+	cd tcl-swig && swig -tcl8 -module $(LBASENAME) $(LBASENAME).i                ## create the interface
+	cd tcl-swig && gcc -fPIC -c $(LBASENAME).c                            ## compile the FU generated code
+	cd tcl-swig && gcc -fPIC -c $(LBASENAME)_wrap.c -I/usr/include/tcl8.6 ## compile the SWIG generated code
+	cd tcl-swig && gcc -shared $(LBASENAME).o $(LBASENAME)_wrap.o -o $(LBASENAME).so    ## combine both to a Tcl library
+	cd tcl-swig && tclsh run-fib.tcl    ## execute the code
 
 lua-swig-run:
 	fut -o lua-swig/$(LBASENAME).c $(FUFILE)
