@@ -1,0 +1,6 @@
+{
+  "name": "fib",
+  "version": "0.0.1",
+  "author": "Detlef Groth",
+  "type": "module"
+}

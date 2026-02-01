@@ -113,11 +113,11 @@ octave-run:
 	fut -o octave/$(LBASENAME).c $(FUFILE)
 	cd octave && swig -octave -module $(LBASENAME) -o $(LBASENAME)_wrap.cpp $(LBASENAME).i
 	cd octave && mkoctfile $(LBASENAME)_wrap.cpp $(LBASENAME).c -o $(LBASENAME)
-	cd octave && octave run-hello.m
+	cd octave && octave run-$(LBASENAME).m
 
 go-cgo-run:
 	fut -o go/$(LBASENAME).c $(FUFILE)
-	cd go && go run run-$(LBASENAME).go $(LBASENAME)
+	cd go && go run run-$(LBASENAME).go
 
 go-swig-run:
 	fut -o goswig/sdk/$(LBASENAME).c $(FUFILE)

@@ -1,0 +1,17 @@
+/// Sample Fib class to calculate Fibonacci numbers.
+public static class Fib {
+	public static uint fib(uint n) {
+		return (n < 2)? n : fib(n - 1) + fib(n - 2);
+	}
+	public static void Main () {
+		for (int i = 0; i < 5; i++) {
+			int f  = Fib.fib(i);
+			Console.WriteLine($"Fib {i} is: {f}");
+		}
+		
+
+	}
+
+}
+
+
