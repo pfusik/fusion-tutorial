@@ -17,7 +17,22 @@ ARGS=
 FUFILE=Fib.fu
 CBASENAME=$(shell basename $(FUFILE) .fu)
 LBASENAME=$(shell basename $(FUFILE) .fu | tr [:upper:] [:lower:])
-
+# Check the operating system
+ifeq ($(OS),Windows_NT)
+    # Windows
+    LIB_EXT = dll
+else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+        # Linux
+        LIB_EXT = so
+    else ifeq ($(UNAME_S),Darwin)
+        # macOS
+        LIB_EXT = dylib
+    else
+        $(error Unsupported OS)
+    endif
+endif
 ## default: list existing tasks 
 .PHONY: tasks
 tasks:  ## list all tasks
@@ -74,7 +89,7 @@ tcl-swig-run:  ## create and run code translated to C and then wrapped using Swi
 	cd tcl-swig && swig -tcl8 -module $(LBASENAME) $(LBASENAME).i                ## create the interface
 	cd tcl-swig && gcc -fPIC -c $(LBASENAME).c                            ## compile the FU generated code
 	cd tcl-swig && gcc -fPIC -c $(LBASENAME)_wrap.c -I/usr/include/tcl8.6 ## compile the SWIG generated code
-	cd tcl-swig && gcc -shared $(LBASENAME).o $(LBASENAME)_wrap.o -o $(LBASENAME).so    ## combine both to a Tcl library
+	cd tcl-swig && gcc -shared $(LBASENAME).o $(LBASENAME)_wrap.o -o $(LBASENAME).$(LIB_EXT)    ## combine both to a Tcl library
 	cd tcl-swig && tclsh run-fib.tcl    ## execute the code
 
 lua-swig-run:
@@ -82,8 +97,8 @@ lua-swig-run:
 	cd lua-swig && swig -lua -module $(LBASENAME) -o $(LBASENAME)_wrap.c $(LBASENAME).i
 	cd lua-swig && gcc -fPIC -I/usr/include/lua5.1 -c  $(LBASENAME)_wrap.c -o $(LBASENAME)_wrap.o
 	cd lua-swig && gcc -fPIC -I/usr/include/lua5.1 -c  $(LBASENAME).c -o $(LBASENAME).o
-	cd lua-swig && gcc -shared -I/usr/include/lua5.1 -L/usr/lib/x86_64-linux-gnu/  $(LBASENAME)_wrap.o $(LBASENAME).o -o $(LBASENAME).so
-	cd lua-swig && nm $(LBASENAME).so | grep Fib
+	cd lua-swig && gcc -shared -I/usr/include/lua5.1 -L/usr/lib/x86_64-linux-gnu/  $(LBASENAME)_wrap.o $(LBASENAME).o -o $(LBASENAME).$(LIB_EXT)
+	cd lua-swig && nm $(LBASENAME).$(LIB_EXT) | grep Fib
 	cd lua-swig && lua run-$(LBASENAME).lua
 
 lua-tstl-run:
